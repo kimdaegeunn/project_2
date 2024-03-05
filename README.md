@@ -1,4 +1,5 @@
 # 캠핑정보공유 커뮤니티 README
+![intro](https://github.com/kimdaegeunn/project_2/assets/153577525/3ee97899-651f-4ce9-b293-14d28369c84a.png)
 
 
 
