@@ -38,17 +38,20 @@
 - 메인페이지의 슬라이드 되는 캠핑장은 전국의 새로운 캠핑장을 소개합니다.또한 DB를 촤신순으로 정렬하여 최신 10개의 데이터를 나열되도록 설계하였다.
 - 카테고리 바로 밑에 원하는 키워드를 바로 서치할 수 있도록 검색창을 구현, 키워드만 검색해도 원하는 정보를 바로 얻을 수 있도록 구현하였다.
 - 메인 페이지 최하단은 각 팀원이 구현한 게시판으로 바로 이동할 수 있도록 구현, 또한 최신 게시글 6개가 차례대로 보이도록 설계하였다.
-- img
+![main](https://github.com/kimdaegeunn/project_2/assets/153582101/d6ba33d8-3a72-41b8-b273-9639c8609bcf)
 
 ### [로그인, 회원가입]
 - 로그인 버튼을 누르면 해당 모달창이 뜨도록 구현. form을 이용해 아이디와 비밀번호를 누르면 <br> 로그인 할 수 있도록 디자인 하였다. 로그인이 성공하면 게시판 열람과 글쓰기 기능이 활성화 된다,
 - 회원가입페이지는 현재 기술이 미약하여 기본적인정보만 인서트 되도록 하였고 추후에 암호화, 유효성검사등 추가할 예정이다.
-- <img src="![main](https://github.com/kimdaegeunn/project_2/assets/153582101/d6ba33d8-3a72-41b8-b273-9639c8609bcf)">
+<img width="1920" alt="login" src="https://github.com/kimdaegeunn/project_2/assets/153582101/e5237538-f91b-4794-a716-887ac402107c">
+![register](https://github.com/kimdaegeunn/project_2/assets/153582101/22926f0c-e74e-4299-ac5a-979c8de2a51d)
+
+
 
 
 ### [카테고리 페이지]
 - 각 카테고리별 캠핑장을 보기 쉽게 분류되어 사용자들의 접근성을 높혔다.
-- <img src="![detail](https://github.com/kimdaegeunn/project_2/assets/153582101/f6c32e08-7065-4ac2-ae13-c590622fd346)">
+![detail](https://github.com/kimdaegeunn/project_2/assets/153582101/f6c32e08-7065-4ac2-ae13-c590622fd346)
 
 
 ### [캠핑장 상세정보페이지]
@@ -56,17 +59,17 @@
 - 캠핑장의 실데이터를 기반으로 작성되어 있다.
 - 데이터베이스에 정보를 바탕으로 일반야영장, 자동차야영장, 카라반, 글램핑으로 나누어 각 페이지로 리다이렉트 될 수 있도록 페이지를 분할하였다.
 - 추천과 찜하기 버튼이 있어 사용자들이 정보를 얻는데도 기여할 수 있다.
-- <img src="![realDetail](https://github.com/kimdaegeunn/project_2/assets/153582101/28eebaae-5a71-49e6-86c1-c06e4102cf9e)">
+![realDetail](https://github.com/kimdaegeunn/project_2/assets/153582101/28eebaae-5a71-49e6-86c1-c06e4102cf9e)"
 
 ### [차트]
 - 캠핑장의 조회수를 통해  인기캠핑장들이 실시간으로 차팅되는 페이지입니다.
 - 캠핑인들의 캠핑장 선택요건, 캠핑인들의 변화추이를 차트로 보기쉽게 접할 수 있습니다.
-- <img src="![charts](https://github.com/kimdaegeunn/project_2/assets/153582101/ee93ba5b-a715-49c5-9d85-048bc87c7b54)">
+![charts](https://github.com/kimdaegeunn/project_2/assets/153582101/ee93ba5b-a715-49c5-9d85-048bc87c7b54)"
 
 
 ### [실시간채팅]
 - 웹소켓을 이용하여 간단한 실시간 채팅을 구현하였다.
-- <img src="![chat](https://github.com/kimdaegeunn/project_2/assets/153582101/b7f57302-91a4-4ccf-8e37-abe706b439cb)">
+![chat](https://github.com/kimdaegeunn/project_2/assets/153582101/b7f57302-91a4-4ccf-8e37-abe706b439cb)"
 
 
 
