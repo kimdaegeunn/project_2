@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    #footer {
+        width : 100%;
+        height : 110px;
+        background-color : #3e4b3c;
+        position : fixed;
+        color:white;
+        bottom: 0;
+
+    }
+    #footer-tap {
+        text-align: center;
+
+    }
+    #footer-tap ul {
+        width : 40%;
+        display : flex;
+        padding : 10px 0 0 40px;
+        margin : 0;
+        position : relative;
+        left : 800px;
+    }
+    #footer li {
+        list-style-type: none;
+        font-size : 17px;
+
+    }
+    #footer-tap a {
+        text-decoration: none;
+        padding : 0 10px;
+        color:white;
+    }
+    #footer-tap li::after {
+        content: "|";
+        float: right;
+        display: block;
+    }
+    #footer-tap li:last-child::after {
+        content: "";
+    }
+    #tap-text {
+        padding-left : 40px;
+    }
+    #tap-text img{
+        width : 18px;
+        position:relative;
+        top:3px;
+    }
+    #header {
+        background-color : rgba(0,0,0,0.4);
+        height:80px;
+        width:100%;
+        z-index: 1;
+        position: relative;
+    }
+    #nav {
+        height: 80px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #nav-word {
+        display:flex;
+        justify-content : space-around;
+        position : relative;
+        width: 45%;
+        right: 15px;
+    }
+    .word {
+        font-size : 20px;
+    }
+    #nav a {
+        color : white;
+        text-decoration: none;
+    }
+    #nav a:hover {
+        color: skyblue;
+    }
+    .camp_info_box {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        clear: both;
+        margin-bottom: 100px;
+    }
+    .camp_info_box .cont_tb table {
+        width: 40%;
+        font-size: 14px;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    table {
+        display: table;
+
+        box-sizing: border-box;
+        text-indent: initial;
+        border-spacing: 2px;
+        border-color: gray;
+    }
+    th, td {
+        display: table-cell;
+        vertical-align: inherit;
+        font-weight: bold;
+
+    }
+    .camp_info_box .cont_tb table tr td {
+        padding: 11px 10px;
+        border-bottom: 1px solid #c8c8c8;
+        line-height: 25px;
+    }
+    .camp_info_box .img_b {
+        width: 40%;
+        height: 484px;
+        float: left;
+        background: #eee;
+        border: 1px solid #dedede;
+        box-sizing: border-box;
+    }
+    .img_b img {
+        width: 100%;
+        height: 484px;
+    }
+    .sub_layout {
+        margin-left: 450px;
+    }
+    .btn_w{width:40%; position:relative; height:auto; padding:10px 0 0 0; clear:both; text-align:center; left: 600px; bottom: 70px;}
+    .btn_w button{margin:0; display:inline-block; }
+    .btn_bB1{background:#375b9c; height:38px; text-align:center; color:#fff; font-size:13px;}
+    .btn_rB1{background:#e32242; height:38px; text-align:center; color:#fff; font-size:13px;}
+    .btn_gB1{background:#fff; height:38px; text-align:center; color:#777; border:1px solid #bebebe; font-size:13px;}
+
+    .best{width:32%; padding-left:0;background-color:#375b9c;}
+    .zzim{width:32%; margin:0 1%;background-color:#e32242; padding-left:0px; }
+    .btn_modify{width:33%;}
+
+
+
+</style>
+<body>
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main/">홈</a></div>
+            <div class="word"><a href="/introduce/">소개</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="sub_layout">
+    <article>
+        <header class="camp_top_info">
+            <h2 class="skip">캠핑장 정보</h2>
+            <div class="camp_info_box">
+                <div class="img_b">
+                    <img src="\images\<%= post.id %>.jpg" alt="캠핑장 이미지" />
+                </div>
+                <!--//S:table-->
+                <div class="cont_tb">
+                    <table class="table">
+                        <colgroup>
+                            <col style="width: 30%;" />
+                            <col style="width: 70%;" />
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th scope="col">캠핑장명</th>
+                            <td><%= post.camping_ground%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수:<%= post.views%></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">주소</th>
+                            <td><%= post.address_marking%></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">캠핑장 유형</th>
+                            <td><%= post.category%></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">운영기간</th>
+                            <td>봄, 여름, 가을, 겨울</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">운영일</th>
+                            <td>평일+주말</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">홈페이지</th>
+                            <td><%= post.website%></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">편의 사항</th>
+                            <td><%= post.facility%></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                    <div class="btn_w">
+                        <button type="button" class="btn_bB1 best" onclick="fnCampLike(); return false">추천하기</button>
+                        <button type="button" class="btn_rB1 zzim" onclick="fnCampBkmk(); return false">찜하기</button>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+</div>
+
+<div id="map">
+
+</div>
+
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">차트</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

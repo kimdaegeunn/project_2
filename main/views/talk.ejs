@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .sent {
+            background-color: #fff046;
+            text-align: right;
+            max-width: 50%; /* 최대 너비 설정 */
+            margin-left: auto;
+        }
+        .received {
+            background-color: #ffffff;
+            text-align: left;
+            max-width: 50%;
+        }
+        .username {
+            font-weight: bold;
+            color: #333;
+        }
+        #form {
+            display: flex;
+            margin-top: 10px;
+        }
+        #input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #d0cece;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #container {
+            width: 300px;
+            height: 540px;
+            padding: 10px;
+            background-color: #5c625e;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        #username-container {
+            margin-bottom: 20px;
+        }
+        #username-container label {
+            margin-right: 10px;
+        }
+        #username-container input[type="text"] {
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            background-color: #d0cece;
+        }
+        #username-container button {
+            padding: 5px 10px;
+            background-color: #0d3616;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #messages {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 470px;
+            overflow-y: auto;
+            background-color: #dcdcd8;
+            border-radius: 20px;
+        }
+        #messages li {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 20px;
+        }
+        #messages li.sent {
+            background-color: #5f7e65;
+            color: #fff;
+            align-self: flex-end;
+        }
+        #messages li.received {
+            background-color: #f0f0f0;
+        }
+        #form {
+            display: flex;
+            position: relative;
+        }
+        #form input[type="text"] {
+            flex: 1;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        #form button {
+            padding: 5px 10px;
+            background-color: #0D3616FF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .top {
+            background-color: #5C625EFF;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div class="top">캠핑톡</div>
+    <div id="username-container">
+        <label for="username">대화명을 입력하세요:</label>
+        <input type="text" id="username" name="username">
+        <button id="username-submit">Submit</button>
+    </div>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <input id="input" autocomplete="off"><button>Send</button>
+    </form>
+</div>
+
+<script src="../index.js"></script>
+<script src="../../node_modules/socket.io/socket.io.js"></script>
+<script>
+    let socket = io();
+
+    let form = document.getElementById('form');
+    let input = document.getElementById('input');
+    let messages = document.getElementById('messages');
+    let chatContainer = document.getElementById('chat-container');
+    let usernameContainer = document.getElementById('username-container');
+    let usernameInput = document.getElementById('username');
+    let usernameSubmit = document.getElementById('username-submit');
+
+    usernameSubmit.addEventListener('click', function() {
+        let username = usernameInput.value.trim();
+        if (username !== '') {
+            socket.emit('join', username);
+            usernameContainer.style.display = 'none';
+            chatContainer.style.display = 'block';
+        } else {
+            alert('Please enter a valid username.');
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', input.value);
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message', function(data) {
+        let item = document.createElement('li');
+        item.textContent = data.username + ': ' + data.message;
+        if (data.username === usernameInput.value.trim()) {
+            item.classList.add('sent');
+        } else {
+            item.classList.add('received');
+        }
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+
+</script>
+
+</body>
+</html>

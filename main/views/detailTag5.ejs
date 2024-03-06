@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드</title>
+    <link rel="stylesheet" type="text/css" href="/main/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="/main/slick/slick.js"></script>
+    <link rel="stylesheet" type="text/css" href="/main/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/main/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <style>
+        body {
+            background-color : #dadada;
+        }
+        #slide {
+            position : relative;
+            top: 200px;
+            height : 400px;
+            overflow: hidden;
+            margin-top:-89px;
+        }
+        .slide-slick {
+            position : relative;
+            width : 92%;
+            height : 600px;
+            margin:auto;
+            display : flex;
+        }
+        .slide-slick img {
+            width: 400px;
+            padding : 10px;
+            background-color : white;
+        }
+        .slide-box {
+            position : relative;
+            right : 84px;
+            text-align: center;
+            margin: 0 90px;
+            /*border : 1px solid black;*/
+        }
+        .slide-slick button {
+            top : 140px;
+            z-index:1;
+        }
+        .slide-text {
+            position : relative;
+            text-align : center;
+            width : 300px;
+            font-weight: bold;
+
+        }
+        .small-no {
+            font-size:14px;
+            color:#67ff67;
+        }
+        .small-ca {
+            font-size:14px;
+            color: #ffa167;
+        }
+        .small-cr {
+            font-size:14px;
+            color: #9dffef;
+        }
+        .small-gp {
+            font-size:14px;
+            color: #e9b1ff;
+        }
+        .big-w {
+            color : black;
+        }
+        #footer {
+            position : relative;
+            top : 329px;
+        }
+        .slide-box:hover {
+            transform: scale(1.05);
+            transition : transform 0.5s ease;
+
+        }
+        a {
+            text-decoration: none;
+        }
+        #title {
+            color:red;
+            position:relative;
+            top:105px;
+            left:90px;
+            width:50%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main/">홈</a></div>
+            <div class="word"><a href="/introduce/">소개</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+
+<div id="title">
+    <h1>#와이파이</h1>
+</div>
+
+<div id="slide">
+    <div class="slide-slick">
+        <% for (let i = 0; i < post.total; i++) { %>
+        <div class="slide-box">
+            <a href="/detailcamping/<%= post.id[i][0] %>"> <!-- 각 캠핑장의 고유 ID를 링크에 포함 -->
+                <img src="\images\<%= post.id[i][0] %>.jpg"/>
+                <div class="slide-text">
+                    <span class="small-no"><%= post.category[i]%></span><br>
+                    <span class="big-w"><%= post.camping_ground[i]%></span>
+                </div>
+            </a>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">차트</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.slide-slick').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 4000,
+            infinite: true
+        });
+    });
+</script>
+
+</body>
+</html>

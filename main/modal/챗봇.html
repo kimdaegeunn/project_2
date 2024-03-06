@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="suho/css/챗봇.css">
+    <title>Campbot5</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<div id="chat-container"></div>
+<script>
+
+    $(function () {
+        const chatContainer = $('#chat-container');
+        let CATEGORY_STATUS = 1;
+        let selectedQuestion = '';
+        let selectedcampType = '';
+
+        function appendMessage(sender, message) {
+            const messageElement = $('<div></div>').html(`<strong>${sender}:</strong>${message}`);
+            chatContainer.append(messageElement);
+            chatContainer.scrollTop(chatContainer.prop('scrollHeight'));
+        }
+
+        function 환영인사() {
+            appendMessage('Campbot', '<br>무엇을 도와드릴까요?' +
+                '<br>저희 커뮤니티에서 찾으실 정보를 선택해주세요✔');
+            showButtons(['야영장 종류', '캠핑요리 레시피', '캠핑장 리뷰 게시판']);
+        }
+
+        function sendMessage(userMessage) {
+            appendMessage('User', userMessage);
+
+            if (CATEGORY_STATUS === 1) {
+                if (userMessage.toLowerCase().includes('야영장 종류')) {
+                    selectedQuestion = '야영장 종류';
+                    showSubCategories(['일반 야영장', '자동차 야영장', '카라반', '글램핑']);
+                    CATEGORY_STATUS = 2;
+                }  else if (userMessage.toLowerCase().includes('캠핑요리 레시피')) {
+                    appendMessage('Campbot', '캠핑요리 레시피를 찾으시나요? → <a href="www.naver.com">캠핑요리 레시피 페이지 바로가기🍽️</a>');
+                } else if (userMessage.toLowerCase().includes('캠핑장 리뷰 게시판')) {
+                    appendMessage('Campbot', '캠핑장 리뷰 게시판을 찾으시나요? → <a href="www.naver.com">캠핑장 리뷰 게시판 바로가기🏕️</a>');
+                } else {
+                    setTimeout(function () {
+                        appendMessage('Campbot', '죄송합니다. 입력하신 정보로는 처리할 수 없습니다😥');
+                    }, 500);
+                }
+            }
+            else if (CATEGORY_STATUS === 2) {
+                if (selectedQuestion === '야영장 종류')
+                    if (userMessage.toLowerCase().includes('일반 야영장')) {
+                        selectedcampType = '일반 야영장';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('자동차 야영장')) {
+                        selectedcampType = '자동차 야영장';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('카라반')) {
+                        selectedcampType = '카라반';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if ( userMessage.toLowerCase().includes('글램핑')) {
+                        selectedcampType = '글램핑';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else {
+                        setTimeout(function () {
+                            appendMessage('Campbot', '죄송합니다. 입력하신 정보로는 처리할 수 없습니다😥');
+                        }, 500);
+                    }
+            } else if (CATEGORY_STATUS === 2) {
+                if (selectedQuestion === '캠핑요리 레시피')
+                    if (userMessage.toLowerCase().includes('일반 야영장')) {
+                        selectedcampType = '일반 야영장';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('카라반')) {
+                        selectedcampType = '카라반';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('글램핑')) {
+                        selectedcampType = '글램핑';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else {
+                        setTimeout(function () {
+                            appendMessage('Campbot', '죄송합니다. 입력하신 정보로는 처리할 수 없습니다😥');
+                        }, 500);
+                    }
+            } else if (CATEGORY_STATUS === 2) {
+                if (selectedQuestion === '캠핑장 리뷰 게시판')
+                    if (userMessage.toLowerCase().includes('일반 야영장')) {
+                        selectedcampType = '일반 야영장';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('자동차 야영장')) {
+                        selectedcampType = '자동차 야영장';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('카라반')) {
+                        selectedcampType = '카라반';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('글램핑')) {
+                        selectedcampType = '글램핑';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+                    } else if (userMessage.toLowerCase().includes('글램핑')) {
+                        selectedcampType = '글램핑';
+                        showSubCategories2(['']);
+                        CATEGORY_STATUS = 3;
+
+                    } else {
+                        setTimeout(function () {
+                            appendMessage('Campbot', '죄송합니다. 입력하신 정보로는 처리할 수 없습니다😥');
+                        }, 500);
+                    }
+            } else {
+                setTimeout(function () {
+                    appendMessage('Campbot', '죄송합니다. 입력하신 정보로는 처리할 수 없습니다😥');
+                }, 500);
+            }
+        }
+
+        function showButtons(buttonTexts) {
+            const buttonsContainer = $('<div></div>').addClass('buttons-container');
+
+            buttonTexts.forEach((text) => {
+                const button = $('<button></button>').text(text);
+                button.click(function () {
+                    sendMessage(text);
+                });
+                buttonsContainer.append(button);
+            });
+
+            chatContainer.append(buttonsContainer);
+            chatContainer.scrollTop(chatContainer.prop('scrollHeight'));
+        }
+
+        function showSubCategories(subCategories) {
+            setTimeout(function () {
+                appendMessage('Campbot', '<br>찾으시는 야영장 종류를 선택해주세요!');
+                showButtons(subCategories);
+                chatContainer.scrollTop(chatContainer.prop('scrollHeight'));
+            }, 500);
+        }
+
+        function showSubCategories2(subCategories) {
+            setTimeout(function () {
+                appendMessage('Campbot', '<br>입력하신 야영장 정보의 페이지로 안내합니다😊😊');
+
+                let link;
+                if (selectedQuestion === '야영장 종류') {
+                    if (selectedcampType === '일반 야영장') {
+                        link = $('<a></a>').attr('href', 'seller/men/Sneakers.html').attr('target', '_blank').text('일반 야영장 상세 페이지 보러 가기');
+                    } else if (selectedcampType === '자동차 야영장') {
+                        link = $('<a></a>').attr('href', 'seller/men/Football_shoes.html').attr('target', '_blank').text('자동차 야영장 상세 페이지 보러 가기');
+                    } else if (selectedcampType === '카라반') {
+                        link = $('<a></a>').attr('href', 'seller/men/Running_shoes.html').attr('target', '_blank').text('카라반 상세 페이지 보러 가기');
+                    } else if (selectedcampType === '글램핑') {
+                        link = $('<a></a>').attr('href', 'seller/men/Sliper.html').attr('target', '_blank').text('야영장 종류 글램핑 상세 정보 보러 가기');
+                    }
+                }else if (selectedQuestion === '캠핑요리 레시피') {
+                    appendMessage('Campbot', '캠핑요리 레시피 상세 정보를 보시려면 여기를 클릭하세요: <a href="woman_sneakers.html" target="_blank">캠핑요리 레시피 바로가기</a>');
+                }
+                else if (selectedQuestion === '캠핑장 리뷰 게시판') {
+                    appendMessage('Campbot', '캠핑요리 레시피 상세 정보를 보시려면 여기를 클릭하세요: <a href="woman_sneakers.html" target="_blank">캠핑요리 레시피 바로가기</a>');
+                }
+                if (!link) {
+                    link = $('<a></a>').attr('href', 'default.html').attr('target', '_blank').text('메인 페이지 보러 가기');
+                }
+                chatContainer.append(link);
+                chatContainer.scrollTop(chatContainer.prop('scrollHeight'));
+            }, 500);
+        }
+        환영인사();
+    });
+
+</script>
+</body>
+</html>

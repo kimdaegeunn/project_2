@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/main/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+    body{
+        background:#ccc;
+    }
+    #book{
+        position: relative;
+        top:85px;
+        width:900px;
+        height:500px;
+        margin:auto;
+    }
+
+    #book .turn-page{
+        background-color:white;
+    }
+
+    #book .cover{
+        background:#333;
+    }
+
+    #book .cover h1{
+        color:white;
+        text-align:center;
+        font-size:50px;
+        line-height:500px;
+        margin:0px;
+    }
+
+    #book .loader{
+        background-image:url(loader.gif);
+        width:24px;
+        height:24px;
+        display:block;
+        position:absolute;
+        top:238px;
+        left:188px;
+    }
+
+    #book .data{
+        text-align:center;
+        font-size:40px;
+        color:#999;
+        /*line-height:500px;*/
+    }
+
+    #controls{
+        position : relative;
+        /*top:30px;*/
+        bottom : 500px;
+        left : 550px;
+        width:800px;
+        text-align:center;
+        margin:20px 0px;
+        font:30px arial;
+    }
+
+    #controls input, #controls label{
+        font:30px arial;
+    }
+
+    #book .odd{
+        background-image:-webkit-linear-gradient(left, #FFF 95%, #ddd 100%);
+        background-image:-moz-linear-gradient(left, #FFF 95%, #ddd 100%);
+        background-image:-o-linear-gradient(left, #FFF 95%, #ddd 100%);
+        background-image:-ms-linear-gradient(left, #FFF 95%, #ddd 100%);
+    }
+
+    #book .even{
+        background-image:-webkit-linear-gradient(right, #FFF 95%, #ddd 100%);
+        background-image:-moz-linear-gradient(right, #FFF 95%, #ddd 100%);
+        background-image:-o-linear-gradient(right, #FFF 95%, #ddd 100%);
+        background-image:-ms-linear-gradient(right, #FFF 95%, #ddd 100%);
+    }
+    .data img {
+        position : relative;
+        top : 50px;
+    }
+    .charts {
+        width : 400px;
+        position : relative;
+        top : 230px;
+        left : 30px;
+    }
+    .charts2 {
+        width : 450px;
+        position : relative;
+        top : 200px;
+    }
+    .projectText {
+        position : relative;
+        top : 100px;
+    }
+</style>
+<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="js.js"></script>
+
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main">홈</a></div>
+            <div class="word"><a href="#">소개</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+
+<div id="book">
+    <div class="cover" style="background-image:url(/main/img/intro.png); background-size:cover; background-position:center;"></div>
+    <div class="data">
+        <span class="projectText">프로젝트 소개</span>
+    </div>
+    <div class="data">
+        <img src="/main/img/1page.png" style="width :300px;">
+         캠핑정보 공유 사이트
+    </div>
+    <div class="data">
+        <span class="projectText">캠핑장 선택기준 비율</span>
+        <div class="charts2">
+            <script src="/main/js/verticalBar.js"></script>
+            <canvas id="verticalBarChart"></canvas>
+        </div>
+    </div>
+    <div class="data">
+        <span class="projectText">연간 숙박캠핑 이용자수</span>
+        <div class="charts">
+            <script src="/main/js/bar.js"></script>
+            <canvas id="myChart" width="150" height="70"></canvas>
+        </div>
+
+    </div>
+    <div class="data">
+        프로젝트 조원<br>김대근<br>조수호<br>김은지<br>장준희
+    </div>
+    <div class="data">
+        감사합니다
+    </div>
+</div>
+<div id="controls">
+    3조 프로젝트 소개
+</div>
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">차트</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    // Sample using dynamic pages with turn.js
+
+    var numberOfPages = 6;
+
+
+    // Adds the pages that the book will need
+    function addPage(page, book) {
+        //  First check if the page is already in the book
+        if (!book.turn('hasPage', page)) {
+            // Create an element for this page
+            var element = $('<div />', {'class': 'page '+((page%2==0) ? 'odd' : 'even'), 'id': 'page-'+page}).html('<i class="loader"></i>');
+            // If not then add the page
+            book.turn('addPage', element, page);
+            // Let's assum that the data is comming from the server and the request takes 1s.
+            setTimeout(function(){
+                element.html('<div class="data">'+page+' 페이지</div>');
+            }, 1000);
+        }
+    }
+
+    $(window).ready(function(){
+        $('#book').turn({acceleration: true,
+            pages: numberOfPages,
+            elevation: 50,
+            gradients: !$.isTouch,
+            when: {
+                turning: function(e, page, view) {
+
+                    // Gets the range of pages that the book needs right now
+                    var range = $(this).turn('range', page);
+
+                    // Check if each page is within the book
+                    for (page = range[0]; page<=range[1]; page++)
+                        addPage(page, $(this));
+
+                },
+
+                turned: function(e, page) {
+                    $('#page-number').val(page);
+                }
+            }
+        });
+
+        $('#number-pages').html(numberOfPages);
+
+        $('#page-number').keydown(function(e){
+
+            if (e.keyCode==13)
+                $('#book').turn('page', $('#page-number').val());
+
+        });
+    });
+
+    $(window).bind('keydown', function(e){
+
+        if (e.target && e.target.tagName.toLowerCase()!='input')
+            if (e.keyCode==37)
+                $('#book').turn('previous');
+            else if (e.keyCode==39)
+                $('#book').turn('next');
+
+    });
+
+</script>
+
+</body>
+</html>

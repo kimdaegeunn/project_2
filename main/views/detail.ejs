@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        /* slider */
+        .slider-container {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 30px 0;
+        }
+        .slider {
+            width: 300%;
+            display: flex;
+            margin: 0;
+        }
+        .slide {
+            width: 250px;
+            height: 300px;
+            margin-right: 10px;
+            border: 1px solid #e3e2e2;
+            border-radius: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: box-shadow 0.1s ease, transform 0.2s ease;
+            transform-origin: center bottom;
+        }
+        .slide:hover {
+            border: none;
+            box-shadow: 0 0 25px rgb(0, 0, 0, 0.7), 0 10px 10px rgba(0, 0, 0, 0.15);
+            transform: scale(1.03);
+            box-sizing: border-box;
+        }
+        .thumbnail {
+
+            height: 60%;
+            background: #4b5d53;
+        }
+        .thumbnail img {
+
+        }
+        .description {
+            margin: 15px 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="slider-container">
+    <ul class="slider">
+        <% for (let i = 0; i < post.total; i++) { %>
+            <li class="slide">
+                <a href="/detailcamping/<%= post.id[i][0] %>"> <!-- 각 캠핑장의 고유 ID를 링크에 포함 -->
+                    <div class="thumbnail"> <img src="\images\<%= post.id[i][0] %>.png"/></div>
+                    <div class="description">
+                        <%= post.category[i] %><br>
+                        <%= post.camping_ground[i] %>
+                    </div>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const slider = document.querySelector('.slider');
+        const sliderContainer = document.querySelector('.slider-container');
+        const slides = document.querySelectorAll('.slide');
+        const slideWidth = slides[0].offsetWidth;
+        const sliderContainerWidth = parseInt(window.getComputedStyle(sliderContainer).getPropertyValue('width'));
+        const totalSlidesWidth = slideWidth * slides.length;
+
+        // sliderContainer.style.width = totalSlidesWidth + 'px';
+        let isDragging = false;
+        let startPosX = 0;
+        let currentTranslate = 0;
+
+        slider.addEventListener('mousedown', (event) => {
+            isDragging = true;
+            startPosX = event.clientX;
+            currentTranslate = getTranslateX();
+        });
+
+        slider.addEventListener('mousemove', (event) => {
+            if (!isDragging) return;
+            const offsetX = event.clientX - startPosX;
+            const translateX = currentTranslate + offsetX;
+            // Check if translating out of bounds
+            if (translateX > 0) {
+                slider.style.transform = `translateX(0px)`;
+            } else if (translateX <= sliderContainerWidth - totalSlidesWidth) {
+                slider.style.transform = `translateX(${sliderContainerWidth - totalSlidesWidth}px)`;
+            } else {
+                slider.style.transform = `translateX(${translateX}px)`;
+            }
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        function getTranslateX() {
+            const transformStyle = window.getComputedStyle(slider).getPropertyValue('transform');
+            const transformMatrix = new DOMMatrixReadOnly(transformStyle);
+            return transformMatrix.m41;
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width:100%;
+        }
+        #main {
+            display : flex;
+            width : 90%;
+            margin : 0 auto;
+            justify-content: center;
+            align-items: center;
+            height : 60vh;
+        }
+        #notice {
+
+        }
+        table {
+            width : 100%;
+            border-collapse: collapse;
+            text-align : center;
+            border-top : 2px solid black;
+            border-bottom : 1px solid black;
+        }
+        th,td {
+            padding : 12px 25px;
+        }
+        th {
+            border-bottom : 1px solid #7a7a7a;
+        }
+        td {
+            border-top : 1px solid #c0c0c0;
+        }
+        .long-th {
+            padding : 0 200px;
+        }
+        .long-td {
+            text-align : left;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="notice">
+        <p><h1>게시판</h1><br>
+        <b>의견을 자유롭게 적어주세요.</b></p>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th class="long-th">제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>좋아요</th>
+                <th>조회수</th>
+            </tr>
+            <% for (let i=0; i<posts.length; i++) { %>
+                <tr>
+                    <td>1</td>
+                    <td class="long-td">글 제목</td>
+                    <td>장준희</td>
+                    <td>2024.02.20</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+<!--<span style="color:red">❤</span>-->

@@ -1,0 +1,46 @@
+#footer {
+    width : 100%;
+    height : 110px;
+    background-color : #3e4b3c;
+    position : fixed;
+    bottom:0;
+    color:white;
+}
+#footer-tap {
+    text-align: center;
+
+}
+#footer-tap ul {
+    width : 40%;
+    display : flex;
+    padding : 10px 0 0 40px;
+    margin : 0;
+    position : relative;
+    left : 800px;
+}
+#footer li {
+    list-style-type: none;
+    font-size : 17px;
+
+}
+#footer-tap a {
+    text-decoration: none;
+    padding : 0 10px;
+    color:white;
+}
+#footer-tap li::after {
+    content: "|";
+    float: right;
+    display: block;
+}
+#footer-tap li:last-child::after {
+    content: "";
+}
+#tap-text {
+    padding-left : 40px;
+}
+#tap-text img{
+    width : 18px;
+    position:relative;
+    top:3px;
+}

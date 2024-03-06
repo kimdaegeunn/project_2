@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <title>글 작성하기</title>
+    <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
+        #header {
+            background-color : rgba(0,0,0,0.4);
+            height:80px;
+            width:100%;
+            z-index: 1;
+            position: relative;
+        }
+        #nav {
+            height: 80px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #nav-word {
+            display:flex;
+            justify-content : space-around;
+            position : relative;
+            width: 45%;
+            right: 15px;
+            align-items: center;
+        }
+        .word {
+            font-size : 20px;
+        }
+        #nav a {
+            color : white;
+            text-decoration: none;
+        }
+        #nav a:hover {
+            color: skyblue;
+        }.submit-button {
+             background-color: #4CAF50;
+             color: white;
+             padding: 20px 40px;
+             text-align: center;
+             text-decoration: none;
+             font-size: 18px;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+             position : relative;
+             bottom : 100px;
+             left : 420px;
+         }
+        .center {
+            float : left;
+            text-align: center;
+        }
+        #main-left {
+            width : 550px;
+            height : 700px;
+            margin:auto;
+            background-color: gray;
+            border-right : 1px solid black;
+            border-radius: 20px;
+            top: 40px;
+            position: relative;
+
+        }
+        #tap-left {
+            position : relative;
+            top : 60px;
+            left : 50px;
+        }
+        #tap-left > div {
+            margin : 20px 0;
+            padding : 10px;
+        }
+        #title {
+            width : 400px;
+            height: 25px;
+        }
+        #content {
+            width : 400px;
+            height: 300px;
+        }
+        h2 {
+            color : white;
+            margin : 5px;
+            text-shadow: 1px 1px black;
+        }
+        input,textarea {
+            border : 1px solid black;
+            position : relative;
+            bottom : 20px;
+        }
+        .create-button {
+            width:75px;
+            height:30px;
+            font-size:15px;
+            border-radius : 10px;
+            position : relative;
+            left : 340px;
+            top : 50px;
+        }
+        .back-button {
+            width : 175px;
+            height : 27px;
+            background-color:white;
+            border:1px solid black;
+            border-radius: 10px;
+            font-size :15px;
+            position: relative;
+            left : 870px;
+            bottom : 75px;
+        }
+        .back-button a {
+            text-decoration: none;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main">공지사항</a></div>
+            <div class="word"><a href="/introduce/">소개</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+<!-- 작성 폼 -->
+<div id="main-left">
+    <div id="tap-left">
+<form action="/DKcreate" method="post">
+    <h2>제목</h2>
+    <label for="title" id="title"></label><br>
+    <input type="text" id="title" name="title"><br>
+    <h2>내용</h2>
+    <label for="content" id="content"></label><br>
+    <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
+    <input type="submit" class="create-button" value="작성하기">
+</form>
+</div>
+</div>
+<!-- 이전 페이지로 돌아가기 버튼 -->
+<div class="center">
+    <div class="back-button"><a href="/DKboardMain?id=<%= userId %>&username=<%= username %>&name=<%= userRealName %>" class="button">이전 페이지로 돌아가기</a></div>
+</div>
+
+</body>
+</html>

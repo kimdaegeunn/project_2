@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Camping Community</title>
+    <link rel="stylesheet" type="text/css" href="/main/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="/main/slick/slick.js"></script>
+    <link rel="stylesheet" type="text/css" href="/main/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/main/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="#">공지사항</a></div>
+            <div class="word"><a href="#">소개&차트</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+<div id="main-up" style="background-image:url(img/camp-main.jpg)">
+    <div id="main-up-set">
+        <div id="main-up-box">
+            <div id="up-tap">
+                <a href="#"><div class="tap-box"><span class="text">일반야영장</span></div></a>
+                <a href="#"><div class="tap-box"><span class="text">자동차야영장</span></div></a>
+                <a href="#"><div class="tap-box"><span class="text">카라반</span></div></a>
+                <a href="#"><div class="tap-box"><span class="text">글램핑</span></div></a>
+            </div>
+        </div>
+        <div id="search-box">
+            <div id="search-left">
+                <label for="search"></label>
+                <input type="text" id="search" placeholder="원하시는 지역 또는 캠핑장명을 입력하세요.">
+            </div>
+            <div id="search-right">
+                <a href="#"><img src="img/search.png"></a>
+            </div>
+        </div>
+        <div id="search-word">
+            <div class="word"><a href="#">#요새뜨는장소</a></div>
+            <div class="word"><a href="#">#서울</a></div>
+            <div class="word"><a href="#">#글램핑</a></div>
+            <div class="word"><a href="#">#레시피</a></div>
+            <div class="word"><a href="#">#지역모임</a></div>
+        </div>
+    </div>
+    <div id="slide">
+        <h2><span style="color:red">New</span> & Update</h2>
+        <div class="slide-slick">
+            <div class="slide-box">
+                <img src="/main/img/camp-1.jpg">
+                <div class="slide-text">
+                    <span class="small-no">일반캠핑장</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-2.jpg">
+                <div class="slide-text">
+                    <span class="small-ca">자동차캠핑장</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-3.jpg">
+                <div class="slide-text">
+                    <span class="small-cr">카라반</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-4.jpg">
+                <div class="slide-text">
+                    <span class="small-gp">글램핑</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-1.jpg">
+                <div class="slide-text">
+                    <span class="small-no">일반캠핑장</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-2.jpg">
+                <div class="slide-text">
+                    <span class="small-ca">자동차캠핑장</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-3.jpg">
+                <div class="slide-text">
+                    <span class="small-cr"><%= category[0] %></span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+            <div class="slide-box">
+                <img src="/main/img/camp-4.jpg">
+                <div class="slide-text">
+                    <span class="small-gp">글램핑</span><br>
+                    <span class="big-w">어쩌구저쩌구캠핑장</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main-down">
+    <div id="down-group">
+        <div class="down-tap">
+            <div class="down-text">
+                <div class="text-up">
+                    <p><img src="/main/img/icon1.svg"><br>캠핑 팁
+                        <a href=" http://localhost:3000/boardMain
+"><img src="/main/img/icon-plus.png" style="width:35px; float:right;"></a></p>
+                </div>
+                <ul>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="down-tap">
+            <div class="down-text">
+                <div class="text-up">
+                    <p><img src="/main/img/icon1.svg"><br>레시피
+                        <a href="#"><img src="/main/img/icon-plus.png" style="width:35px; float:right;"></a></p>
+                </div>
+                <ul>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="down-tap">
+            <div class="down-text">
+                <div class="text-up">
+                    <p><img src="/main/img/icon1.svg"><br>캠핑모임
+                        <a href="#"><img src="/main/img/icon-plus.png" style="width:35px; float:right;"></a></p>
+                </div>
+                <ul>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="down-tap">
+            <div class="down-text">
+                <div class="text-up">
+                    <p><img src="/main/img/icon1.svg"><br>리뷰 및 후기
+                        <a href="#"><img src="/main/img/icon-plus.png" style="width:35px; float:right;"></a></p>
+                </div>
+                <ul>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                    <li><a href="#">김수한무거북이와두루미</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">차트</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+            <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.slide-slick').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            infinite: true
+        });
+    });
+</script>
+</body>
+</html>

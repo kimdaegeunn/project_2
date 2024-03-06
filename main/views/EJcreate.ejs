@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 작성하기</title>
+    <style>
+        /* 전체 페이지를 가운데 정렬 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* 상단부터 정렬 */
+            height: 100vh;
+            margin: 0;
+            padding-top: 20px; /* 상단 여백 추가 */
+        }
+
+        /* 폼 요소 스타일 */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: #ddd;
+            color: #000;
+            border: 1px solid #888;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .back-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 작성 폼 -->
+<!-- enctype="multipart/form-data"는
+HTML 폼(form)이 파일 업로드를 포함하는 경우에 사용되는 속성 -->
+<form action="/create" method="post" enctype="multipart/form-data">
+    <label for="title">제목:</label>
+    <input type="text" id="title" name="title"><br>
+    <label for="content">내용:</label><br>
+    <textarea id="content" name="content" rows="24" cols="50"></textarea><br>
+    <!-- 파일 업로드 인풋 추가 -->
+    <label for="files">파일 첨부:</label><br>
+    <input type="file" id="files" name="files" multiple required><br>
+    <input type="submit" value="작성하기" required>
+</form>
+
+<!-- 이전 페이지로 돌아가기 버튼 -->
+<a href="/boardMain">이전 페이지로 돌아가기</a>
+
+</body>
+</html>

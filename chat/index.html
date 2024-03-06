@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        #header {
+            background-color : rgba(0,0,0,0.4);
+            height:80px;
+            width:100%;
+            z-index: 1;
+            position: relative;
+        }
+        #nav {
+            height: 80px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #nav-word {
+            display:flex;
+            justify-content : space-around;
+            position : relative;
+            width: 45%;
+            right: 15px;
+        }
+        .word {
+            font-size : 20px;
+        }
+        #nav a {
+            color : white;
+            text-decoration: none;
+        }
+        #nav a:hover {
+            color: skyblue;
+        }
+
+        #container {
+            width: 300px;
+            height: 500px;
+            padding: 20px;
+            background-color: #80a6ff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            margin: 80px 600px;
+            position: relative;
+
+        }
+
+
+        .sent {
+            background-color: #fff046;
+            text-align: right;
+            max-width: 60%; /* 최대 너비 설정 */
+            margin-left: auto;
+
+        }
+        .received {
+            background-color: #ffffff;
+            text-align: left;
+            max-width: 60%;
+
+        }
+        .username {
+            font-weight: bold;
+            color: #333;
+        }
+        #form {
+            display: flex;
+            margin-top: 10px;
+
+        }
+        #input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #d0cece;
+
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #container {
+            width: 300px;
+            height: 540px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #username-container {
+            margin-bottom: 20px;
+        }
+
+        #username-container label {
+            margin-right: 10px;
+        }
+
+        #username-container input[type="text"] {
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            background-color: #d0cece;
+        }
+
+        #username-container button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #username-container button:hover {
+            background-color: #0056b3;
+        }
+
+        #messages {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 470px;
+            overflow-y: auto;
+            flex-direction:column_reverse;
+
+        }
+
+        #messages li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #messages li.sent {
+            background-color: #007bff;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        #messages li.received {
+            background-color: #f0f0f0;
+        }
+
+        #form {
+            display: flex;
+            position: relative;
+        }
+
+        #form input[type="text"] {
+            flex: 1;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        #form button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #form button:hover {
+            background-color: #0056b3;
+        }
+        #footer {
+            width : 100%;
+            height : 110px;
+            background-color : #3e4b3c;
+            position : fixed;
+            bottom: 0;
+            color:white;
+
+        }
+        #footer-tap {
+            text-align: center;
+
+        }
+        #footer-tap ul {
+            width : 40%;
+            display : flex;
+            padding : 10px 0 0 40px;
+            margin : 0;
+            position : relative;
+            left : 800px;
+        }
+        #footer li {
+            list-style-type: none;
+            font-size : 17px;
+
+        }
+        #footer-tap a {
+            text-decoration: none;
+            padding : 0 10px;
+            color:white;
+        }
+        #footer-tap li::after {
+            content: "|";
+            float: right;
+            display: block;
+        }
+        #footer-tap li:last-child::after {
+            content: "";
+        }
+        #tap-text {
+            padding-left : 40px;
+        }
+        #tap-text img{
+            width : 18px;
+            position:relative;
+            top:3px;
+        }
+        /*#container::-webkit-scrollbar {*/
+        /*    width: 10px; !* 스크롤바의 너비 *!*/
+        /*}*/
+
+        /*!* 스크롤바 트랙 *!*/
+        /*#container::-webkit-scrollbar-track {*/
+        /*    background: #c20d0d; !* 스크롤바 트랙 배경색 *!*/
+        /*}*/
+
+        /*!* 스크롤바 색상 *!*/
+        /*#container::-webkit-scrollbar-thumb {*/
+        /*    background: #c50303; !* 스크롤바 색상 *!*/
+        /*}*/
+
+        /*!* 스크롤바 hover 시 색상 *!*/
+        /*#container::-webkit-scrollbar-thumb:hover {*/
+        /*    background: #880b0b; !* 스크롤바 hover 시 색상 *!*/
+        /*}*/
+        .top {
+            background-color: #3e4b3c;
+        }
+    </style>
+</head>
+<body>
+<div id="talk-con">
+    <div id="header">
+        <div id="nav">
+            <div id="nav-word">
+                <div class="word"><a href="#">공지사항</a></div>
+                <div class="word"><a href="#">소개&차트</a></div>
+                <div class="word"><a href="#">캠핑톡</a></div>
+                <div class="word"><a href="#">로그인</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <!--    <div class="top">dd</div>-->
+        <div id="username-container">
+            <label for="username">대화명을 입력하세요:</label>
+            <input type="text" id="username" name="username">
+            <button id="username-submit">Submit</button>
+        </div>
+        <ul id="messages"></ul>
+        <form id="form" action="">
+            <input id="input" autocomplete="off"><button>Send</button>
+        </form>
+    </div>
+    <div id="footer">
+        <div id="footer-tap">
+            <ul>
+                <li><a href="#">소개</a></li>
+                <li><a href="#">차트</a></li>
+                <li><a href="#">로그인</a></li>
+            </ul>
+            <div id="tap-text">
+                <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                    <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+
+    var form = document.getElementById('form');
+    var input = document.getElementById('input');
+    var messages = document.getElementById('messages');
+    var chatContainer = document.getElementById('chat-container');
+    var usernameContainer = document.getElementById('username-container');
+    var usernameInput = document.getElementById('username');
+    var usernameSubmit = document.getElementById('username-submit');
+
+    usernameSubmit.addEventListener('click', function() {
+        var username = usernameInput.value.trim();
+        if (username !== '') {
+            socket.emit('join', username);
+            usernameContainer.style.display = 'none';
+            chatContainer.style.display = 'block';
+        } else {
+            alert('Please enter a valid username.');
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', input.value);
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message', function(data) {
+        var item = document.createElement('li');
+        item.textContent = data.username + ': ' + data.message;
+        if (data.username === usernameInput.value.trim()) {
+            item.classList.add('sent');
+        } else {
+            item.classList.add('received');
+        }
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width:100%;
+        }
+        #main {
+            display : flex;
+            width : 90%;
+            margin : 0 auto;
+            justify-content: center;
+            align-items: center;
+            height : 60vh;
+        }
+        #notice {
+
+        }
+        table {
+            width : 100%;
+            border-collapse: collapse;
+            text-align : center;
+            border-top : 2px solid black;
+            border-bottom : 1px solid black;
+        }
+        th,td {
+            padding : 12px 25px;
+        }
+        th {
+            border-bottom : 1px solid #7a7a7a;
+        }
+        td {
+            border-top : 1px solid #c0c0c0;
+        }
+        .long-th {
+            padding : 0 200px;
+        }
+        .long-td {
+            text-align : left;
+        }
+        .pageNum {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div style="position: absolute; top: 10px; right: 10px;">
+        <% if (userRealName) { %>
+            <p><%= userRealName %>님 환영합니다. &nbsp;&nbsp; <a href="/logout" class="button">로그아웃</a></p>
+        <% } else { %>
+            <a href="/login" class="button">로그인</a>
+        <% } %>
+    </div>
+    <div id="notice">
+        <p><h1>게시판</h1><br>
+        <b>의견을 자유롭게 적어주세요.</b></p>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th class="long-th">제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>좋아요</th>
+                <th>조회수</th>
+            </tr>
+            <% for (let i=0; i<posts.length; i++) { %>
+                <tr>
+                    <td><%= posts[i][0] %></td>
+                    <td class="long-td"><a href="/detailPost/<%= posts[i][0] %>"><%= posts[i][1] %></a></td>
+                    <td><%= posts[i][2] %></td>
+                    <td><%= posts[i][3] %></td>
+                    <td><%= posts[i][4] %></td>
+                    <td><%= posts[i][5] %></td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+    <script>
+        console.log(<%= startPage %>);
+    </script>
+    <!-- 페이징 -->
+    <div class="pageNum">
+        <!-- currentPage가 1보다 크면 이전 링크로 이동할 수 있는 조건   -->
+        <!--    쿼리 파라메터 문법
+        url/?[쿼리파라메터1]=[쿼리파라메터1의 값1]&[쿼리파라메터1]=[쿼리파라메터2의 값2]...[쿼리파라메터n]=[쿼리파라메터n의값n]-->
+        <!-- "/?page=[페이지번호] => 쿼리파라메터로 get 방식인 경우에 url에 파라메터 값을 지정하여 넘길 수 있다.   -->
+        <% if (currentPage > 1) { %>
+            <a href="/boardMain/?page=<%= currentPage - 1 %>">이전</a>
+        <% } %>
+
+        <% for (let i = startPage; i <= endPage; i++) { %>
+            <% if (i === currentPage) { %>
+                <span class="current-page"><%= i %></span>
+            <% } else { %>
+                <a href="/boardMain/?page=<%= i %>"><%= i %></a>
+            <% } %>
+        <% } %>
+
+        <!-- 현재 페이지에서 한 화면에 처리하는 페이지 갯수 보다 하나라도 더 많으면 다음 링크로 이동할 수 있는 조건   -->
+        <% if ( (totalPages - currentPage +1) > maxPageNumber ) { %>
+            <a href="/boardMain/?page=<%= currentPage + 1 %>">다음</a>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
+<!--<span style="color:red">❤</span>-->

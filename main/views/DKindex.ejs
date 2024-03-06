@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            position: relative;
+            top: 5px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        td {
+            background-color: #ffffff;
+        }
+        th {
+            background-color: rgb(227, 231, 225);
+            cursor: pointer; /* 정렬을 위해 커서 타입 변경 */
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+        }
+
+        .post-link {
+            text-decoration: none; /* 기본 링크 스타일 무시 */
+            color: black;
+        }
+
+        .post-link:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            display: flex;
+            margin-left: 1380px;
+        }
+        .paging-container {
+            margin-left: 800px;
+            top: 30px;
+            position: relative;
+        }
+        .paging-container .current-page {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #5b605d;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .paging-container a {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #5d5d64;
+            background-color: #f3f5f3;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* 검색 조건을 가운데 정렬 */
+        #searchContainer {
+            margin-top: 20px;
+            margin-left: 480px;
+
+        }
+
+        #searchContainer label,
+        #searchContainer select,
+        #searchContainer input[type="text"],
+        #searchContainer button {
+            margin-right: 5px;
+        }
+
+        #header {
+            background-color : rgba(0,0,0,0.4);
+            height:80px;
+            width:100%;
+            z-index: 1;
+            position: relative;
+        }
+        #nav {
+            height: 80px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #nav-word {
+            display:flex;
+            justify-content : space-around;
+            position : relative;
+            width: 45%;
+            right: 15px;
+        }
+        .word {
+            font-size : 20px;
+        }
+        #nav a {
+            color : white;
+            text-decoration: none;
+        }
+        #nav a:hover {
+            color: skyblue;
+        }
+        #footer {
+            width : 100%;
+            height : 110px;
+            background-color : #3e4b3c;
+            position : fixed;
+            bottom: 0;
+            color:white;
+        }
+        #footer-tap {
+            text-align: center;
+
+        }
+        #footer-tap ul {
+            width : 40%;
+            display : flex;
+            padding : 10px 0 0 40px;
+            margin : 0;
+            position : relative;
+            left : 800px;
+        }
+        #footer li {
+            list-style-type: none;
+            font-size : 17px;
+
+        }
+        #footer-tap a {
+            text-decoration: none;
+            padding : 0 10px;
+            color:white;
+        }
+        #footer-tap li::after {
+            content: "|";
+            float: right;
+            display: block;
+        }
+        #footer-tap li:last-child::after {
+            content: "";
+        }
+        #tap-text {
+            padding-left : 40px;
+        }
+        #tap-text img{
+            width : 18px;
+            position:relative;
+            top:3px;
+        }
+        .title {
+            text-align: left;
+        }
+        .author {
+            width: 100px;
+        }
+        .date {
+            width: 100px;
+        }
+        .views {
+            width: 100px;
+        }
+        h1 {
+            margin-left: 480px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main">홈</a></div>
+            <div class="word"><a href="/introduce">소개</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+
+<h1>캠핑팁</h1>
+<!--<div style="position: absolute; top: 10px; right: 10px;">-->
+<!--    <% if (userRealName) { %>-->
+<!--        <p><%= userRealName %>님 환영합니다. &nbsp;&nbsp; <a href="/logout" class="button">로그아웃</a></p>-->
+<!--    <% } else { %>-->
+<!--        <a href="/login" class="button">로그인</a>-->
+<!--    <% } %>-->
+<!--</div>-->
+
+<!-- 글쓰기 버튼 -->
+<div class="button-container">
+    <% if (userRealName) { %>
+        <a href="/DKcreate" class="button">글쓰기</a>
+    <% } %>
+</div>
+<!-- 게시글 목록 표시 -->
+<table>
+    <thead>
+    <tr>
+        <th>제목</th>
+        <th>글쓴이</th>
+        <th>날짜</th>
+        <th>조회</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for (let i = 0; i < campingtip.length; i++) { %>
+        <tr>
+            <td class="title"><a href="/DKdetailPost/<%= campingtip[i][0] %>" class="post-link"><%= campingtip[i][1] %> [<%= campingtip[i][6] %>]</a></td>
+            <td class="author"><%= campingtip[i][2] %></td>
+            <td class="date"><%= campingtip[i][3] %></td>
+            <td class="views"><%= campingtip[i][4] %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+
+<script>
+    // 단순히 한 번만 초기화되도록 변수.
+    // 한 번 설정된 값은 그 후에 페이지가 재로드되어도 바뀌지 않는다.
+    let sortByViews = false;
+
+    // 페이지 로드 또는 재로드 될 때마다 초기화를 위한 함수
+    window.onload = function() {
+        // 현재 페이지의 URL에서 쿼리 문자열을 반환
+        const queryParams = new URLSearchParams(window.location.search);
+
+        // 'sort' 쿼리 파라메터 값을 확인
+        const sortParam = queryParams.get('sort');
+
+        if (sortParam === 'views_desc') {
+            sortByViews = true;
+        }
+    };
+
+    function toggleSort() {
+        // sortByViews라는 플래그 변수(상태를 저장하는 변수)를 지정하여 정렬상태를 토글(반전) 시킴
+        sortByViews = !sortByViews;
+        const sortParam = sortByViews ? 'views_desc' : ''; // 정렬 방식에 따른 쿼리 파라미터
+        // location 객체를 사용하여 지정된 URL로 이동 및 화면 갱신
+        window.location.href = `/DKboardMain?sort=${sortParam}`; // 최초 조회수 클릭 시 /boardMain?sort=views_desc
+    }
+</script>
+
+
+
+<!-- 검색 조건 -->
+<!-- 검색 조건 및 입력 창 -->
+<div id="searchContainer">
+<!-- 기존의 /boardMain이 get방식으로 처리되고 있어 편의상 GET 방식으로 호출   -->
+    <form action="/DKboardMain" method="GET">
+        <select id="searchType" name="searchType">
+            <option value="title" selected>제목</option>
+            <option value="content">게시글 내용</option>
+            <option value="author">글 작성자</option>
+        </select>
+        <input type="text" id="searchInput" name="searchInput">
+        <button type="submit">검색</button>
+    </form>
+</div>
+
+<!-- 페이징 -->
+<div class="paging-container">
+    <% if (currentPage > 1) { %>
+        <a href="/DKboardMain/?page=<%= currentPage - 1 %>">이전</a>
+    <% } %>
+
+    <% for (let i = startPage; i <= endPage; i++) { %>
+        <% if (i === currentPage) { %>
+            <span class="current-page"><%= i %></span>
+        <% } else { %>
+            <a href="/DKboardMain/?page=<%= i %>"><%= i %></a>
+        <% } %>
+    <% } %>
+
+    <% if ((totalPages - currentPage + 1) > maxPageNumber) { %>
+        <a href="/DKboardMain/?page=<%= currentPage + 1 %>">다음</a>
+    <% } %>
+</div>
+
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">차트</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

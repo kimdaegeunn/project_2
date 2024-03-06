@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Camping Data</title>
+    <link rel="stylesheet" type="text/css" href="/main/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+    #campingChart {
+        z-index: 1;
+    }
+    #chart {
+        position : relative;
+        top :60px;
+        width :600px;
+    }
+    #footer {
+        width : 100%;
+        height : 110px;
+        background-color : #3e4b3c;
+        position : fixed;
+        bottom:0;
+        color:white;
+    }
+    .data img {
+        position : relative;
+        top : 50px;
+    }
+    .charts {
+        width : 600px;
+        height : 500px;
+        position : relative;
+        z-index : 1;
+    }
+    .charts2 {
+        width : 600px;
+        position : relative;
+        z-index : 5;
+    }
+    .projectText {
+        position : relative;
+        left : 230px;
+    }
+    #verticalBarChart {
+        z-index : 5;
+        position : relative;
+    }
+    #chartBox {
+        display : flex;
+    }
+    .data1 {
+        position: relative;
+        left : 150px;
+    }
+    .data2 {
+        position: relative;
+        top : 50px;
+        left : 400px;
+    }
+    .data3 {
+        position : relative;
+        height : 100px;
+        top : 350px;
+        right : 220px;
+    }
+</style>
+<body>
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main/">홈</a></div>
+            <div class="word"><a href="/introduce/">소개</a></div>
+            <div class="word"><a href="/camping">차트</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+<div id="chartBox">
+    <div class="data1">
+        <div id="chart">
+            <span class="projectText">인기 캠핑장 조회수</span>
+            <canvas id="campingChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <div class="data2">
+        <span class="projectText">연간 숙박캠핑 이용자수</span>
+        <div class="charts">
+            <script src="/main/js/bar.js"></script>
+            <canvas id="myChart" width="200" height="70"></canvas>
+        </div>
+    </div>
+    <div class="data3">
+        <span class="projectText">캠핑장 선택기준 비율</span>
+        <div class="charts2">
+            <script src="/main/js/verticalBar.js"></script>
+            <canvas id="verticalBarChart"></canvas>
+        </div>
+    </div>
+</div>
+
+
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('campingChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['큐브빌리지글램핑','화원684글램핑','들소리 키즈 글램핑', 'J글램핑','비토애'],
+            datasets: [{
+                label: '조회수',
+                data: [12,9,8,6,4],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<!--바차트-->
+<script>
+    // 데이터 설정
+    const normalData = {
+        labels: ['2017', '2018', '2019', '2020' , '2021'],
+        datasets: [{
+            label: '연간 캠핑객수 (단위 = 만명)',
+            data: [300, 400, 400, 510, 530],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // 바 차트 생성
+    const normalCtx = document.getElementById('myChart').getContext('2d');
+    const normalChart = new Chart(normalCtx, {
+        type: 'bar',
+        data: normalData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+</script>
+<!--가로차트-->
+<script>
+    const horizontalChartData= {
+        labels: ["청결", "경관", "편의시설", "접근성", "가격", '놀이시설', '캠핑장규모','예약용이성', '기타'],
+        datasets: [{
+            label: '캠핑장 선택기준',
+            data: [27.7, 20.1, 15.2, 10.1, 6.8, 4.6, 3.6, 2.5, 9.4],
+            backgroundColor: [
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+                'rgba(30,196,54,1)',
+
+            ],
+            // borderColor: [
+            //     'rgba(255, 99, 132, 1)',
+            //     'rgba(54, 162, 235, 1)',
+            //     'rgba(255, 206, 86, 1)',
+            //     'rgba(75, 192, 192, 1)',
+            //     'rgba(153, 102, 255, 1)',
+            //     'rgba(255, 159, 64, 1)'
+            // ],
+            borderWidth: 1
+        }]
+    };
+
+    // 수직 바 차트 생성
+    const horizontalCtx = document.getElementById('verticalBarChart').getContext('2d');
+    const myVerticalBarChart = new Chart(horizontalCtx, {
+        type: 'bar',
+        data: horizontalChartData,
+        options: {
+            indexAxis: 'y', // y축을 기준으로 바 차트를 그립니다.
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>

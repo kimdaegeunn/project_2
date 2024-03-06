@@ -1,0 +1,76 @@
+/* style.css */
+body {
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* from background style */
+#modalLogin-con {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .6);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+/* form style */
+form {
+    width: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px 20px 0px 20px;
+    max-width: 300px;
+}
+form label { font-size: 0.8em; }
+form input {
+    width: 100%;
+    border: 0;
+    line-height: 18px;
+    border-bottom: 2px solid #d3d3d3;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* input의 border가 튀어나오는걸 숨겨줌 */
+}
+input [ type="text" ],
+input [ type="password" ] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input:focus {
+    background-color: #d3d3d3;
+    outline: none;
+    border-radius: 2px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.login-btn {
+    color: #fff;
+    background-color: #838383;
+    transition-property: all;
+    transition-duration: .5s;
+}
+.closeModalBtn {
+    background: none;
+    color: #d3d3d3;
+    font-weight: bold;
+    transition-property: all;
+    transition-duration: .5s;
+}
+.login-btn:hover {
+    background-color: #FF7F00;
+    color: white;
+}

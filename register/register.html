@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/main/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/main/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/register/css/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+    <div id="nav">
+        <div id="nav-word">
+            <div class="word"><a href="/main">홈</a></div>
+            <div class="word"><a href="#">소개</a></div>
+            <div class="word"><a href="#">캠핑톡</a></div>
+            <div class="word"><a href="#">로그인</a></div>
+        </div>
+    </div>
+</div>
+
+<div id="box">
+<div class="register">
+
+</div>
+<div class="register">
+<form action="doJoin" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
+
+    <h2>회원가입</h2>
+    <div class="textForm">
+        <input name="loginId" type="text" class="id" placeholder="아이디">
+    </div>
+    <div class="textForm">
+        <input name="loginPw" type="password" class="pw" placeholder="비밀번호">
+    </div>
+    <div class="textForm">
+        <input name="name" type="text" class="name" placeholder="이름">
+    </div>
+    <div class="textForm">
+        <input name="birthday" type="date" class="birthday" placeholder="생년월일" max="2024-12-31" min="1900-01-01" value="2024-03-05">
+    </div>
+    <div class="textForm">
+        <input name="tell" type="text" class="tell" placeholder="전화번호">
+    </div>
+    <input type="submit" class="btn" value="J O I N"/>
+</form>
+</div>
+</div>
+
+<div id="footer">
+    <div id="footer-tap">
+        <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">차트</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+        <div id="tap-text">
+            <p>Copyright © 2024 EZEN_CAMPING All rights reserved.<br>
+                <img src="/main/img/call-2.png">&nbsp;전화 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/main/img/email.png" style="background-color:rgba(255,255,255,1)">&nbsp;이메일 EZEN@ACADEMY.com</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
